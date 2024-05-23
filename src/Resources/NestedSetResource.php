@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Djnew\MoonShineNestedset\Resources;
+namespace Djnew\MoonShineNestedSet\Resources;
 
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\{Route};
 use MoonShine\Http\Requests\Resources\ViewAnyFormRequest;
 use MoonShine\Resources\ModelResource;
 
-abstract class NestedsetResource extends ModelResource
+abstract class NestedSetResource extends ModelResource
 {
     public string $treeRelationName = 'childrenNestedset';
     protected string $sortDirection = 'ASC';

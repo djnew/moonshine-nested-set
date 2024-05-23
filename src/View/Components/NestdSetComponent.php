@@ -15,7 +15,7 @@ use MoonShine\Traits\HasResource;
 /**
  * @method static static make(ModelResource $resource)
  */
-final class NestdsetComponent extends MoonshineComponent
+final class NestdSetComponent extends MoonshineComponent
 {
     use HasResource;
 

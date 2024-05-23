@@ -71,7 +71,7 @@ And add component
 ```php
 namespace App\MoonShine\Pages;
 
-use Djnew\MoonShineNestedSet\View\Components\NestdsetComponent;
+use Djnew\MoonShineNestedSet\View\Components\NestdSetComponent;
 use MoonShine\Pages\Crud\IndexPage;
 
 class CategoryTreePage extends IndexPage
@@ -80,7 +80,7 @@ class CategoryTreePage extends IndexPage
     {
         return [
             ...$this->actionButtons(),
-            NestdsetComponent::make($this->getResource()),
+            NestdSetComponent::make($this->getResource()),
         ];
     }
 }
@@ -134,7 +134,7 @@ public function wrapable(): bool
 ```php
 namespace App\MoonShine\Pages;
 
-use Djnew\MoonShineNestedSet\View\Components\NestdsetComponent;
+use Djnew\MoonShineNestedSet\View\Components\NestdSetComponent;
 use MoonShine\Pages\Crud\IndexPage;
 
 class CategoryTreePage extends IndexPage
@@ -145,7 +145,7 @@ class CategoryTreePage extends IndexPage
             ...$this->actionButtons(),
             Fragment::make(
                 [
-                    NestdsetComponent::make($this->getResource())
+                    NestdSetComponent::make($this->getResource())
                         ->setFragmentName('fragment-name')
                 ]
             )->name('fragment-name')
