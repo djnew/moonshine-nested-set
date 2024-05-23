@@ -32,6 +32,8 @@ class CategoryResource extends NestedsetResource
     // Required
     protected string $column = 'title';
 
+    protected string $model    = Page::class;
+
     // Custom child relation name
     public string $treeRelationName = 'children';
 
@@ -83,6 +85,23 @@ class CategoryTreePage extends IndexPage
             NestdSetComponent::make($this->getResource()),
         ];
     }
+}
+
+```
+
+Add trait to model
+```php
+namespace App\Models;
+
+use App\Traits\MoonshineNestedSetTrait;
+use Illuminate\Database\Eloquent\Model;
+
+
+class Page extends Model
+{
+    use moonshineNestedSetTrait;
+    
+    // ...
 }
 
 ```
