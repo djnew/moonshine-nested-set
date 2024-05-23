@@ -1,0 +1,44 @@
+{
+    "name": "djnew/moonshine-nestedset",
+    "description": "Tree resource for moonshine",
+    "keywords": ["moonshine"],
+    "type": "library",
+    "homepage": "https://moonshine-laravel.com",
+    "license": "MIT",
+    "version": "0.0.1",
+    "support": {
+        "issues": "https://github.com/djnew/moonshine-nestedset/issues",
+        "source": "https://github.com/djnew/moonshine-nestedset"
+    },
+    "authors": [
+        {
+            "name": "Aleksandr Klementev",
+            "email": "djnew@bk.ru"
+        }
+    ],
+    "require": {
+        "php": "^8.0|^8.1|^8.2|^8.3",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "kalnoy/nestedset": "^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Djnew\\MoonShineNestedSet\\": "src/"
+        }
+    },
+    "conflict": {
+        "moonshine/moonshine": "<2.0"
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Djnew\\MoonShineNestedSet\\Providers\\MoonShineNestedSetServiceProvider"
+            ]
+        }
+    }
+}

@@ -1,0 +1,13 @@
+{
+  "resources/css/nestedset.css": {
+    "file": "assets/nestedset.css",
+    "src": "resources/css/nestedset.css",
+    "isEntry": true
+  },
+  "resources/js/app.js": {
+    "file": "assets/app.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  }
+}

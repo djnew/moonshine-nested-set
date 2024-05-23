@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.nested-element{
+    @apply border-solid border-l-2 border-gray-600 px-1 py-1 shadow-md  cursor-pointer;
+}
+
+.nested-element + .nested-element{
+    @apply mt-2 relative;
+}
+
+:is(.dark .nested-element){
+    @apply border-solid border-l-2 border-white;
+}
+
+ul > .nested-element:first-child .nested-tree-action__up{
+    display: none;
+}
+
+ul > .nested-element:first-child .show-up .nested-tree-action__up{
+    display: block;
+}
+
+ul > .nested-element:last-child .nested-tree-action__down{
+    display: none;
+}
+
+
+.nested-element__data{
+    @apply flex justify-between items-center gap-4;
+}
+.nested-element__data-item{
+    @apply flex justify-start items-center gap-4 grow;
+}
+.nested-element__data-buttons{
+    @apply flex justify-between items-center gap-4;
+}
