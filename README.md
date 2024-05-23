@@ -37,10 +37,13 @@ class CategoryResource extends NestedsetResource
     // Custom child relation name
     public string $treeRelationName = 'children';
 
-    // use pagination
+    // Use pagination
     protected bool $usePagination = true;
 
-    // items per page
+    // Show Up/Down element buttons for sort
+    public bool $showUpDownButtons = false;
+
+    // Items per page
     protected int $itemsPerPage = 10;
 
 
@@ -89,6 +92,28 @@ class CategoryTreePage extends IndexPage
 
 ```
 
+Add migration to model
+
+```php
+use Kalnoy\Nestedset\NestedSet;
+
+Schema::create('table', function (Blueprint $table) {
+    ...
+    NestedSet::columns($table);
+});
+```
+
+To drop columns:
+```php
+
+...
+use Kalnoy\Nestedset\NestedSet;
+
+Schema::table('table', function (Blueprint $table) {
+    NestedSet::dropColumns($table);
+});
+```
+
 Add trait to model
 ```php
 namespace App\Models;
@@ -106,27 +131,53 @@ class Page extends Model
 
 ```
 
-Just a sortable usage
+
+
+
+### Migrating existing data
+
+#### Migrating from other nested set extension
+
+If your previous extension used different set of columns, you just need to override
+following methods on your model class:
 
 ```php
-use Djnew\MoonShineNestedSet\Resources\NestedsetResource;
-
-class CategoryResource extends NestedsetResource
+public function getLftName()
 {
-    // Required
-    protected string $column = 'title';
-=
-
-    // ... fields, model, etc ...
-
-    public function treeKey(): ?string
-    {
-        return null;
-    }
-
-
-    // ...
+    return 'left';
 }
+
+public function getRgtName()
+{
+    return 'right';
+}
+
+public function getParentIdName()
+{
+    return 'parent';
+}
+
+// Specify parent id attribute mutator
+public function setParentAttribute($value)
+{
+    $this->setParentIdAttribute($value);
+}
+```
+
+#### Migrating from basic parentage info
+
+If your tree contains `parent_id` info, you need to add two columns to your schema:
+
+```php
+$table->unsignedInteger('_lft');
+$table->unsignedInteger('_rgt');
+```
+
+After [setting up your model](#the-model) you only need to fix the tree to fill
+`_lft` and `_rgt` columns:
+
+```php
+MyModel::fixTree();
 ```
 
 

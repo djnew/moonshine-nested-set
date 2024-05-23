@@ -21,6 +21,8 @@ abstract class NestedSetResource extends ModelResource
 
     protected bool $isAsync = true;
 
+    public bool $showUpDownButtons = false;
+
     abstract public function treeKey(): ?string;
 
 

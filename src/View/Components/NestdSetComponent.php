@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Djnew\MoonShineNestedset\View\Components;
+namespace Djnew\MoonShineNestedSet\View\Components;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -45,6 +45,23 @@ final class NestdSetComponent extends MoonshineComponent
     {
         $page = (int)request()->input('page', 1);
         $events = $this?->fragmentName ? [$this->fragmentName] : [];
+        $upDownButtons = [];
+        if($this->getResource()->showUpDownButtons){
+            $upDownButtons = [
+                ActionButton::make('', $this->getResource()->url())
+                    ->icon('heroicons.chevron-up')
+                    ->method('nestedsetUp', events: $events, resource: $this->getResource())
+                    ->customAttributes([
+                        'class' => 'nested-tree-action__up',
+                    ]),
+                ActionButton::make('', $this->getResource()->url())
+                    ->icon('heroicons.chevron-down')
+                    ->method('nestedsetDown', events: $events, resource: $this->getResource())
+                    ->customAttributes([
+                        'class' => 'nested-tree-action__down',
+                    ]),
+            ];
+        }
         return [
             'items'        => $this->items(),
             'page'         => $page,
@@ -56,19 +73,8 @@ final class NestdSetComponent extends MoonshineComponent
 
                 return ActionButtons::make([
                     ...$resource->getIndexButtons(),
+                    ...$upDownButtons,
                     DetailButton::for($resource),
-                    ActionButton::make('', $this->getResource()->url())
-                        ->icon('heroicons.chevron-up')
-                        ->method('nestedsetUp', events: $events)
-                        ->customAttributes([
-                            'class' => 'nested-tree-action__up',
-                        ]),
-                    ActionButton::make('')
-                        ->icon('heroicons.chevron-down')
-                        ->method('nestedsetDown', events: $events)
-                        ->customAttributes([
-                            'class' => 'nested-tree-action__down',
-                        ]),
                     EditButton::for($resource, 'tree'),
                     DeleteButton::for($resource, 'tree'),
                 ])->fillItem($item);
