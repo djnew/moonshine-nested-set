@@ -51,9 +51,7 @@
                 :item="$inner"
                 :page="$page"
                 :resource="$resource"
-                @if($fragmentName)
-                    :fragment-name="$fragmentName"
-                @endif
+                :fragment-name="$fragmentName"
                 :buttons="$buttons"
             />
         @endforeach
