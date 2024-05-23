@@ -6,7 +6,7 @@
 
 <p align="center">
 <a href="https://moonshine-laravel.com" target="_blank">
-<img src="https://github.com/djnew/moonshine-nested-set/blob/master/art/screenshot.png">
+<img src="https://github.com/djnew/moonshine-nested-set/blob/main/art/screenshot.png">
 </a>
 </p>
 
