@@ -68,7 +68,7 @@ final class NestdSetComponent extends MoonshineComponent
             'fragmentName' => $this->fragmentName ?? '',
             'resource'     => $this->getResource(),
             'route'        => $this->getResource()->route('nestedset'),
-            'buttons'      => function ($item) use($page, $events) {
+            'buttons'      => function ($item) use($page, $events, $upDownButtons) {
                 $resource = $this->getResource()->setItem($item);
 
                 return ActionButtons::make([
