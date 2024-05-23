@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Djnew\MoonShineNestedset\Providers;
+namespace Djnew\MoonShineNestedSet\Providers;
 
 use Illuminate\Support\Facades\{Blade, Vite};
 use Illuminate\Support\ServiceProvider;
@@ -21,7 +21,7 @@ final class MoonShineNestedsetServiceProvider extends ServiceProvider
                 Vite::createAssetPathsUsing(function (string $path, ?bool $secure) { // Customize the backend path generation for built assets...
                     return "{$path}";
                 })
-                    ->asset('resources/css/nestedset.css', 'vendor/djnew/moonshine-nestedset'),
+                    ->asset('resources/css/nested-set.css', 'vendor/djnew/moonshine-nestedset'),
 
                 Vite::createAssetPathsUsing(function (string $path, ?bool $secure) { // Customize the backend path generation for built assets...
                     return "{$path}";

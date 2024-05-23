@@ -21,8 +21,7 @@ export default (url = null, group = null, element = null, events = null, attribu
 
                     await axios.post(url, formData)
 
-                    if(evt.item.dataset?.fragmentevent){
-
+                    if(evt.item.dataset.fragmentevent !== ''){
                         window.dispatchEvent(new Event(evt.item.dataset?.fragmentevent))
                     }
                 }
