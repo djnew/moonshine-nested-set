@@ -15,8 +15,10 @@ final class MoonShineNestedsetServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__ . '/../../public' => public_path('vendor/djnew/moonshine-nestedset'),
-        ], 'moonshine-nestedset');
-        if(file_exists(public_path() . '/vendor/djnew/moonshine-nestedset')) {
+        ], ['moonshine-nestedset', 'laravel-assets']);
+
+
+        if(file_exists(public_path() . '/vendor/djnew/moonshine-nestedset/')) {
             moonShineAssets()->add([
                 Vite::createAssetPathsUsing(function (string $path, ?bool $secure) { // Customize the backend path generation for built assets...
                     return "{$path}";

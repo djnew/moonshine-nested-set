@@ -5,7 +5,7 @@
     "type": "library",
     "homepage": "https://moonshine-laravel.com",
     "license": "MIT",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "support": {
         "issues": "https://github.com/djnew/moonshine-nested-set/issues",
         "source": "https://github.com/djnew/moonshine-nested-set"
