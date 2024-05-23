@@ -1,5 +1,5 @@
 {
-    "name": "djnew/moonshine-nestedset",
+    "name": "djnew/moonshine-nested-set",
     "description": "Tree resource for moonshine",
     "keywords": ["moonshine"],
     "type": "library",
@@ -7,8 +7,8 @@
     "license": "MIT",
     "version": "0.0.1",
     "support": {
-        "issues": "https://github.com/djnew/moonshine-nestedset/issues",
-        "source": "https://github.com/djnew/moonshine-nestedset"
+        "issues": "https://github.com/djnew/moonshine-nested-set/issues",
+        "source": "https://github.com/djnew/moonshine-nested-set"
     },
     "authors": [
         {
