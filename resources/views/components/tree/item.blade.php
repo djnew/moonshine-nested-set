@@ -38,7 +38,7 @@
     </div>
 
         <ul
-            x-data="nestedset('{{ $resource->getAsyncMethodUrl('nestedset') }}', 'nested')"
+            x-data="nestedset('{{ $resource->getAsyncMethodUrl('nestedset', page: $resource->getPages()->first()) }}', 'nested')"
             data-id="{{ $item->getKey() }}"
             data-handle=".handle"
             data-animation="150"

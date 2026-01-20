@@ -5,14 +5,9 @@ declare(strict_types=1);
 namespace Djnew\MoonShineNestedSet\View\Components;
 
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
-use MoonShine\Contracts\Core\ResourceContract;
 use MoonShine\Core\Traits\HasResource;
-use MoonShine\Laravel\Buttons\DeleteButton;
-use MoonShine\Laravel\Buttons\DetailButton;
-use MoonShine\Laravel\Buttons\EditButton;
-use MoonShine\Laravel\Resources\CrudResource;
+use MoonShine\Crud\Resources\CrudResource;
 use MoonShine\Laravel\Resources\ModelResource;
 use MoonShine\Support\AlpineJs;
 use MoonShine\Support\Enums\JsEvent;
@@ -80,17 +75,14 @@ final class NestdSetComponent extends MoonshineComponent
             'page'         => $page,
             'fragmentName' => $this->fragmentName ?? '',
             'resource'     => $this->getResource(),
-            'route'        => $this->getResource()->getAsyncMethodUrl('nestedset'),
+            'route'        => $this->getResource()->getAsyncMethodUrl('nestedset', page: $this->getResource()->getPages()->first()),
             'buttons'      => function ($item) use($page, $events, $upDownButtons) {
                 /** @var CrudResource $resource */
                 $resource = $this->getResource()->setItem($item);
 
                 return ActionButtons::make([
-                    ...$resource->getIndexButtons(),
+                    ...$resource->getIndexPage()->getButtons(),
                     ...$upDownButtons,
-                    DetailButton::for($resource),
-                    EditButton::for($resource, 'tree'),
-                    DeleteButton::for($resource, 'tree'),
                 ])->fill($resource->getCastedData());
             }
         ];

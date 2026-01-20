@@ -10,9 +10,8 @@ use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\LazyCollection;
-use MoonShine\Laravel\Http\Requests\Resources\ViewAnyFormRequest;
-use MoonShine\Laravel\MoonShineRequest;
 use MoonShine\Laravel\Resources\ModelResource;
+use MoonShine\Support\Attributes\AsyncMethod;
 use MoonShine\Support\Enums\SortDirection;
 
 abstract class NestedSetResource extends ModelResource
@@ -67,29 +66,32 @@ abstract class NestedSetResource extends ModelResource
         return true;
     }
 
+    #[AsyncMethod]
     public function nestedsetDown(): void
     {
-        $item     = $this->model::find($this->getItemID());
+        $item     = $this->getModel()::find($this->getItemID());
         $neighbor = $item->nextSiblings()->get()->first();
         $item?->insertAfterNode($neighbor);
     }
 
 
+    #[AsyncMethod]
     public function nestedsetUp(): void
     {
-        $item     = $this->model::find($this->getItemID());
+        $item     = $this->getModel()::find($this->getItemID());
         $neighbor = $item->prevSiblings()->get()->first();
         $item?->insertBeforeNode($neighbor);
     }
 
-    public function nestedset(MoonShineRequest $request) {
+    #[AsyncMethod]
+    public function nestedset() {
         /** @var NestedsetResource $resource */
-        $resource = $request->getResource();
+        $request = request();
+        $resource = $this;
         $keyName  = $resource->getModel()->getKeyName();
         $model    = $resource->getModel();
 
-
-        if ($resource->treeKey() && $request->str('data')->isNotEmpty()) {
+        if ($resource->treeKey() && $request->str('data')) {
 
             $id       = $request->get('id');
             $index    = $request->integer('index');
