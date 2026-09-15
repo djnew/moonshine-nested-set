@@ -1,24 +1,30 @@
 @props([
     'resource',
-    'item',
+    'items',
     'buttons',
     'page',
-    '$fragmentName',
+    'fragmentName',
+    'route',
 ])
 
-@if(!empty($items[0]))
+@if(count($items) > 0)
     <div
         @if($resource->wrapable())
-        x-data="{tree_show_all: $persist(true).as('tree_resource_all')}"
+            x-data="{tree_show_all: $persist(true).as('tree_resource_all')}"
         @endif
     >
-        <ul @if($resource->sortable())
+        <ul
+            @if($resource->sortable())
                 x-data="nestedset('{{ $route }}', 'nested')"
                 data-id=""
                 data-handle=".handle"
                 data-animation="150"
-                data-fallbackOnBody="true"
-                data-swapThreshold="0.65"
+                data-fallback-on-body="true"
+                data-swap-threshold="0.65"
+                data-empty-insert-threshold="16"
+                data-nested-set-list
+                data-success-message="{{ __('moonshine-nestedset::ui.order_saved') }}"
+                data-error-message="{{ __('moonshine-nestedset::ui.order_save_failed') }}"
             @endif
         >
             @foreach($items as $item)
@@ -27,17 +33,14 @@
                     :page="$page"
                     :resource="$resource"
                     :fragment-name="$fragmentName"
+                    :route="$route"
                     :buttons="$buttons"
                 />
             @endforeach
         </ul>
-            @if($resource->isPaginationUsed())
-                {{ $items->links(
-                    false
-                        ? 'moonshine::ui.simple-pagination'
-                        : 'moonshine::ui.pagination',
-                    ['async' => false]
-                ) }}
-            @endif
+
+        @if($resource->isPaginationUsed())
+            {{ $items->links('moonshine::ui.pagination', ['async' => false]) }}
+        @endif
     </div>
 @endif

@@ -3,19 +3,19 @@
     'item',
     'buttons',
     'page',
-    'fragmentName'
+    'fragmentName',
+    'route',
 ])
 
-@if($resource->treeKey())
-    <li class="nested-element"
-        data-id="{{ $item->getKey() }}"
-        @if($fragmentName)
-        data-fragmentEvent="{{ $fragmentName }}"
-        @endif
-        @if($resource->wrapable())
-            x-data="{tree_show_{{ $item->getKey() }}: $persist(true).as('tree_resource_{{ $item->getKey() }}')}"
-        @endif
-    >
+<li class="nested-element"
+    data-id="{{ $item->getKey() }}"
+    @if($fragmentName)
+        data-fragment-event="{{ $fragmentName }}"
+    @endif
+    @if($resource->wrapable())
+        x-data="{tree_show_{{ $item->getKey() }}: $persist(true).as('tree_resource_{{ $item->getKey() }}')}"
+    @endif
+>
     <div class="nested-element__data handle">
         <div class="nested-element__data-item">
             @if($resource->sortable())
@@ -31,32 +31,33 @@
         </div>
 
         <div class="nested-element__data-buttons @if($page > 1) show-up @endif">
-            <x-moonshine::action-group
-                :actions="$buttons($item)"
-            />
+            <x-moonshine::action-group :actions="$buttons($item)" />
         </div>
     </div>
 
-        <ul
-            x-data="nestedset('{{ $resource->getAsyncMethodUrl('nestedset', page: $resource->getPages()->first()) }}', 'nested')"
+    <ul
+        @if($resource->sortable())
+            x-data="nestedset('{{ $route }}', 'nested')"
             data-id="{{ $item->getKey() }}"
             data-handle=".handle"
             data-animation="150"
-            data-fallbackOnBody="true"
-            data-swapThreshold="0.65"
-        >
-    @if(!empty($item->{$resource->treeRelationName}))
+            data-fallback-on-body="true"
+            data-swap-threshold="0.65"
+            data-empty-insert-threshold="16"
+            data-nested-set-list
+            data-success-message="{{ __('moonshine-nestedset::ui.order_saved') }}"
+            data-error-message="{{ __('moonshine-nestedset::ui.order_save_failed') }}"
+        @endif
+    >
         @foreach($item->{$resource->treeRelationName}->all() as $inner)
             <x-moonshine-nestedset::tree.item
                 :item="$inner"
                 :page="$page"
                 :resource="$resource"
                 :fragment-name="$fragmentName"
+                :route="$route"
                 :buttons="$buttons"
             />
         @endforeach
-    @endif
-
-        </ul>
-    </li>
-@endif
+    </ul>
+</li>

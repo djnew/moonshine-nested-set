@@ -1,11 +1,15 @@
 {
     "name": "djnew/moonshine-nested-set",
-    "description": "Tree resource for moonshine",
-    "keywords": ["moonshine"],
+    "description": "Sortable tree resource for MoonShine",
+    "keywords": [
+        "moonshine",
+        "nested-set",
+        "sortable",
+        "tree"
+    ],
     "type": "library",
     "homepage": "https://moonshine-laravel.com",
     "license": "MIT",
-    "version": "0.2.0",
     "support": {
         "issues": "https://github.com/djnew/moonshine-nested-set/issues",
         "source": "https://github.com/djnew/moonshine-nested-set"
@@ -17,24 +21,35 @@
         }
     ],
     "require": {
-        "php": "^8.0|^8.1|^8.2|^8.3|^8.4",
-        "ext-curl": "*",
+        "php": ">=8.4",
         "ext-json": "*",
-        "kalnoy/nestedset": "^6.0",
-        "moonshine/moonshine": "^4.0",
-        "laravel/framework": "^v12.35.1"
+        "kalnoy/nestedset": "^7.0",
+        "moonshine/moonshine": "^4.11",
+        "laravel/framework": "^13.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.89",
+        "phpunit/phpunit": "^12.0",
+        "symfony/polyfill-iconv": "^1.33"
     },
     "autoload": {
         "psr-4": {
             "Djnew\\MoonShineNestedSet\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
     "conflict": {
-        "moonshine/moonshine": "<4.0"
+        "laravel/framework": "<13.0",
+        "moonshine/moonshine": "<4.11"
     },
     "scripts": {
         "test": "vendor/bin/phpunit",
-        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes --sequential",
+        "format:check": "vendor/bin/php-cs-fixer fix --dry-run --diff --allow-risky=yes --sequential"
     },
     "extra": {
         "laravel": {
