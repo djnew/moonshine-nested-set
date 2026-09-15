@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.2](https://github.com/djnew/moonshine-nested-set/compare/0.3.1...0.3.2) (2026-09-15)
+
+
+### Bug Fixes
+
+* **ci:** обновить Release Please до Node 24 ([3530255](https://github.com/djnew/moonshine-nested-set/commit/3530255aefc20ff9050787c0ebc37b3102cb1a24))
+* **ci:** обновить Release Please до Node 24 ([7ad2ba1](https://github.com/djnew/moonshine-nested-set/commit/7ad2ba1fa160cbefe72506e2803207652cff9ccf))
+
 ## [0.3.1](https://github.com/djnew/moonshine-nested-set/compare/0.3.0...0.3.1) (2026-09-15)
 
 
