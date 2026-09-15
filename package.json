@@ -6,8 +6,8 @@
     "dev": "vite",
     "build": "vite build",
     "test:js": "node --test tests/js/*.test.js",
-    "prettier": "prettier --write README.md CHANGELOG.md release-please-config.json .release-please-manifest.json '.github/**/*.yml' 'resources/**/*.{css,js,yml}' '!**/views' '!**/dist' '!**/vendor'",
-    "prettier:check": "prettier --check README.md CHANGELOG.md release-please-config.json .release-please-manifest.json '.github/**/*.yml' 'resources/**/*.{css,js,yml}' '!**/views' '!**/dist' '!**/vendor'"
+    "prettier": "prettier --write README.md release-please-config.json .release-please-manifest.json '.github/**/*.yml' 'resources/**/*.{css,js,yml}' '!**/views' '!**/dist' '!**/vendor'",
+    "prettier:check": "prettier --check README.md release-please-config.json .release-please-manifest.json '.github/**/*.yml' 'resources/**/*.{css,js,yml}' '!**/views' '!**/dist' '!**/vendor'"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
