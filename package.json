@@ -5,22 +5,24 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "prettier": "npx prettier --write 'resources/**/*.{css,js,yml}' '!**/views' '!**/dist' '!**/vendor'"
+    "test:js": "node --test tests/js/*.test.js",
+    "prettier": "prettier --write README.md CHANGELOG.md release-please-config.json .release-please-manifest.json '.github/**/*.yml' 'resources/**/*.{css,js,yml}' '!**/views' '!**/dist' '!**/vendor'",
+    "prettier:check": "prettier --check README.md CHANGELOG.md release-please-config.json .release-please-manifest.json '.github/**/*.yml' 'resources/**/*.{css,js,yml}' '!**/views' '!**/dist' '!**/vendor'"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.16",
-    "laravel-vite-plugin": "^2.0.1",
-    "prettier": "3.0.3",
-    "rollup-plugin-iife": "^0.7.1",
-    "tailwindcss": "4.1.17",
-    "vite": "^7.1.12"
+    "@tailwindcss/vite": "^4.3.3",
+    "autoprefixer": "^10.6.0",
+    "laravel-vite-plugin": "^3.2.0",
+    "prettier": "^3.9.6",
+    "rollup-plugin-iife": "^0.8.0",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.3.0"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.17",
-    "alpinejs": "^3.14.0",
-    "postcss": "^8.4.38",
-    "postcss-import": "^16.1.0",
-    "postcss-nested": "^6.0.1",
-    "sortablejs": "^1.15.2"
+    "alpinejs": "^3.17.2",
+    "postcss": "^8.5.28",
+    "postcss-import": "^17.0.0",
+    "postcss-nested": "^8.0.1",
+    "sortablejs": "^1.15.7"
   }
 }

@@ -24,7 +24,6 @@ ul > .nested-element:last-child .nested-tree-action__down {
     display: none;
 }
 
-
 .nested-element__data {
     @apply flex justify-between items-center gap-4;
 }
@@ -37,3 +36,38 @@ ul > .nested-element:last-child .nested-tree-action__down {
     @apply flex justify-between items-center gap-4;
 }
 
+[data-nested-set-list] {
+    min-height: 0.25rem;
+    transition:
+        opacity 150ms ease,
+        background-color 150ms ease;
+}
+
+[data-nested-set-list]:empty {
+    min-height: 0.75rem;
+}
+
+[data-nested-set-list][data-id]:not([data-id=""]) {
+    padding-bottom: 5px;
+}
+
+[data-nested-set-list].nested-set--saving {
+    cursor: wait;
+}
+
+.nested-element--chosen > .nested-element__data {
+    @apply ring-2 ring-purple-500 ring-offset-2;
+}
+
+.nested-element--ghost {
+    @apply opacity-40 border-dashed;
+}
+
+.nested-element--drag {
+    @apply shadow-lg;
+}
+
+.nested-element--saving > .nested-element__data {
+    @apply opacity-60;
+    cursor: wait;
+}

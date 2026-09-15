@@ -1,11 +1,12 @@
 {
   "resources/css/nested-set.css": {
     "file": "assets/nested-set.css",
-    "src": "resources/css/nested-set.css",
-    "isEntry": true,
+    "name": "nested-set",
     "names": [
       "nested-set.css"
-    ]
+    ],
+    "src": "resources/css/nested-set.css",
+    "isEntry": true
   },
   "resources/js/app.js": {
     "file": "assets/app.js",
